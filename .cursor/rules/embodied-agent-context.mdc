@@ -1,0 +1,37 @@
+---
+description: Embodied Agent 项目上下文 — 物理世界自主智能体系统
+alwaysApply: true
+---
+
+# Embodied Agent 项目
+
+## 项目概述
+
+本项目旨在构建一个由 AI 驱动的物理操作系统，实现"感知→决策→执行→反馈"闭环。最终目标是硬件级自举。
+
+## 架构核心
+
+- **决策层**: AI Agent (Cursor/Claude) — 高层推理与规划
+- **桥接层**: Python 本地中间件 — 实时控制、安全约束
+- **设备层**: 摄像头+云台 / 机械臂 / 拓竹P2S打印机
+- 通信: WebSocket (AI↔中间件), 串口 (中间件↔硬件), MQTT (中间件↔打印机)
+
+## 技术栈
+
+- Python 3.10+, asyncio, FastAPI
+- OpenCV (视觉), pyserial (串口), paho-mqtt (打印机)
+- OpenSCAD (3D建模), PrusaSlicer CLI (切片)
+- Arduino/ESP32 (底层固件)
+
+## 开发原则
+
+- 安全第一：所有物理操作必须经过安全约束引擎校验
+- 分层解耦：AI 不直接操作硬件，必须经过中间件
+- 闭环反馈：每个动作执行后必须有传感器/视觉确认
+- 渐进迭代：按 Phase 0→1→2→3→4 逐步推进
+
+## 关键文档
+
+- `docs/architecture.md` — 系统架构详细设计
+- `docs/hardware-bom.md` — 硬件物料清单与采购
+- `docs/roadmap.md` — 分阶段路线图与里程碑
